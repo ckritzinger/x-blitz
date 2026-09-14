@@ -220,18 +220,6 @@ onBeforeUnmount(() => {
       </span>
     </div>
 
-    <div
-      v-if="streak > 0"
-      :key="streak"
-      class="mt-3 flex w-full max-w-md flex-col items-center gap-1 rounded-2xl px-5 py-3 shadow-md ring-2 animate-streakPulse"
-      :class="[streakTheme.bg, streakTheme.text, streakTheme.ring]"
-    >
-      <div class="text-2xl font-extrabold sm:text-3xl">{{ streak }} streak · {{ currentMultiplier }}x</div>
-      <div class="max-w-full break-words text-center leading-none">
-        <span v-for="i in streak" :key="i">🔥</span>
-      </div>
-    </div>
-
     <!-- Problem -->
     <div class="mt-8 text-6xl font-extrabold tracking-tight text-slate-800 sm:text-7xl">
       {{ x }} × {{ y }}
@@ -266,6 +254,24 @@ onBeforeUnmount(() => {
       >
         {{ btn.value }}
       </button>
+    </div>
+
+    <!-- Streak bar: fixed to the bottom so it never shifts the layout above -->
+    <div
+      v-if="streak > 0"
+      :key="streak"
+      class="fixed inset-x-0 bottom-0 z-30 flex justify-center px-4"
+      style="padding-bottom: max(0.75rem, env(safe-area-inset-bottom) + 0.5rem)"
+    >
+      <div
+        class="flex w-full max-w-md flex-col items-center gap-1 rounded-2xl px-5 py-2.5 shadow-lg ring-2 animate-streakPulse"
+        :class="[streakTheme.bg, streakTheme.text, streakTheme.ring]"
+      >
+        <div class="text-lg font-extrabold sm:text-xl">{{ streak }} streak · {{ currentMultiplier }}x</div>
+        <div class="flex w-full justify-center gap-0.5 overflow-hidden whitespace-nowrap text-xs leading-none">
+          <span v-for="i in streak" :key="i">🔥</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
