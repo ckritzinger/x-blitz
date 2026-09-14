@@ -180,9 +180,9 @@ onBeforeUnmount(() => {
 <template>
   <div
     ref="rootEl"
-    class="relative flex min-h-[100dvh] flex-col items-center overflow-hidden px-4 pt-6 transition-colors duration-200"
+    class="relative flex min-h-[100dvh] flex-col items-center overflow-hidden px-4 pt-4 transition-colors duration-200"
     :class="roundResult === 'incorrect' ? 'bg-rose-50' : 'bg-slate-50'"
-    style="padding-bottom: max(2.5rem, env(safe-area-inset-bottom) + 1.5rem)"
+    style="padding-bottom: max(7rem, env(safe-area-inset-bottom) + 6rem)"
   >
     <!-- Confetti burst, emanates from the tapped button -->
     <div
@@ -207,7 +207,7 @@ onBeforeUnmount(() => {
     </div>
 
     <!-- Top bar: progress + score + streak -->
-    <div class="flex w-full max-w-md items-center justify-between text-sm font-semibold text-slate-500">
+    <div class="flex w-full max-w-sm items-center justify-between text-sm font-semibold text-slate-500">
       <span>Round {{ Math.min(roundIndex + 1, rounds) }} / {{ rounds }}</span>
       <span class="relative text-slate-700">
         Score: {{ totalScore }}
@@ -221,12 +221,12 @@ onBeforeUnmount(() => {
     </div>
 
     <!-- Problem -->
-    <div class="mt-8 text-6xl font-extrabold tracking-tight text-slate-800 sm:text-7xl">
+    <div class="mt-4 text-5xl font-extrabold tracking-tight text-slate-800 sm:text-6xl">
       {{ x }} × {{ y }}
     </div>
 
     <!-- Countdown bar -->
-    <div class="mt-6 h-4 w-full max-w-md overflow-hidden rounded-full bg-slate-200">
+    <div class="mt-4 h-3 w-full max-w-sm overflow-hidden rounded-full bg-slate-200">
       <div
         class="h-full rounded-full transition-[width] duration-75 ease-linear"
         :class="barColor"
@@ -235,13 +235,13 @@ onBeforeUnmount(() => {
     </div>
 
     <!-- Answer grid -->
-    <div class="mt-10 grid w-full max-w-md grid-cols-3 gap-3">
+    <div class="mt-5 grid w-full max-w-xs grid-cols-3 gap-2.5">
       <button
         v-for="btn in buttons"
         :key="btn.value"
         :disabled="locked"
         @click="handleTap(btn, $event)"
-        class="aspect-square rounded-2xl text-2xl font-bold shadow-sm transition-all duration-150 sm:text-3xl"
+        class="aspect-square rounded-2xl text-xl font-bold shadow-sm transition-all duration-150 sm:text-2xl"
         :class="[
           locked && feedback.id === btn.value && feedback.correct
             ? 'bg-emerald-400 text-white animate-pop'

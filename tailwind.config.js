@@ -24,12 +24,17 @@ export default {
           '0%, 100%': { transform: 'scale(1)' },
           '50%': { transform: 'scale(1.15)' },
         },
+        trophyPulse: {
+          '0%, 100%': { transform: 'scale(1) rotate(-4deg)' },
+          '50%': { transform: 'scale(1.18) rotate(4deg)' },
+        },
       },
       animation: {
         pop: 'pop 0.25s ease-out',
         shake: 'shake 0.35s ease-in-out',
         floatUp: 'floatUp 0.7s ease-out forwards',
         streakPulse: 'streakPulse 0.5s ease-in-out',
+        trophyPulse: 'trophyPulse 1.6s ease-in-out infinite',
       },
     },
   },
