@@ -180,8 +180,9 @@ onBeforeUnmount(() => {
 <template>
   <div
     ref="rootEl"
-    class="relative flex min-h-screen flex-col items-center overflow-hidden px-4 py-6 transition-colors duration-200"
+    class="relative flex min-h-[100dvh] flex-col items-center overflow-hidden px-4 pt-6 transition-colors duration-200"
     :class="roundResult === 'incorrect' ? 'bg-rose-50' : 'bg-slate-50'"
+    style="padding-bottom: max(2.5rem, env(safe-area-inset-bottom) + 1.5rem)"
   >
     <!-- Confetti burst, emanates from the tapped button -->
     <div
