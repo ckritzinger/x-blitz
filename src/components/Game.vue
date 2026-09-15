@@ -133,6 +133,7 @@ function tick() {
 
 function handleTap(button, event) {
   if (locked.value) return
+  event?.currentTarget?.blur()
   resolveRound(button, button.correct, event)
 }
 
@@ -237,8 +238,8 @@ onBeforeUnmount(() => {
     <!-- Answer grid -->
     <div class="mt-5 grid w-full max-w-xs grid-cols-3 gap-2.5">
       <button
-        v-for="btn in buttons"
-        :key="btn.value"
+        v-for="(btn, i) in buttons"
+        :key="`${roundIndex}-${i}`"
         :disabled="locked"
         @click="handleTap(btn, $event)"
         class="aspect-square rounded-2xl text-xl font-bold shadow-sm transition-all duration-150 sm:text-2xl"

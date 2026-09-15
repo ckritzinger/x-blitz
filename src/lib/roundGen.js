@@ -97,7 +97,7 @@ export function generateGrid(x, y, min, max) {
   }
 
   const buttons = [correct, ...distractors].map((value) => ({ value, correct: value === correct }))
-  shuffle(buttons)
+  buttons.sort((a, b) => a.value - b.value)
   return buttons
 }
 
