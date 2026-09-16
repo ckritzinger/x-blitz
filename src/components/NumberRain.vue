@@ -9,6 +9,7 @@ const canvasEl = ref(null)
 
 let ctx = null
 let drops = []
+let speeds = []
 let columnCount = 0
 let rafId = null
 let frameCount = 0
@@ -21,6 +22,7 @@ function setupCanvas() {
   canvas.height = rect.height
   columnCount = Math.ceil(canvas.width / COL_WIDTH)
   drops = Array.from({ length: columnCount }, () => Math.random() * -50)
+  speeds = Array.from({ length: columnCount }, () => (0.15 + Math.random() * 0.7) * (0.15 + Math.random() * 0.7))
   ctx.fillStyle = '#020617'
   ctx.fillRect(0, 0, canvas.width, canvas.height)
 }
@@ -50,8 +52,9 @@ function drawFrame() {
 
     if (drops[i] * FONT_SIZE > canvas.height && Math.random() > 0.975) {
       drops[i] = 0
+      speeds[i] = (0.15 + Math.random() * 0.7) * (0.15 + Math.random() * 0.7)
     }
-    drops[i] += 0.4
+    drops[i] += speeds[i]
   }
 
   rafId = requestAnimationFrame(drawFrame)
